@@ -1,9 +1,4 @@
-import {
-  fireEvent,
-  getByText,
-  getAllByRole,
-  screen,
-} from "@testing-library/dom";
+import { fireEvent } from "@testing-library/dom";
 import "@testing-library/jest-dom/extend-expect";
 import { JSDOM } from "jsdom";
 import fs from "fs";

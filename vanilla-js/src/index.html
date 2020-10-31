@@ -1,8 +1,17 @@
 <html>
   <head>
     <title>Testing</title>
+    <style>
+      .no-js [role="tablist"] {
+        display: none;
+      }
+
+      body:not(.no-js) [role="tabpanel"] h2 {
+        display: none;
+      }
+    </style>
   </head>
-  <body>
+  <body class="no-js">
     <main>
       <div class="tabs">
         <div role="tablist" aria-label="Entertainment">
@@ -11,7 +20,6 @@
             aria-selected="true"
             aria-controls="nils-tab"
             id="nils"
-            data-testid="first-tab"
           >
             Nils Frahm
           </button>
@@ -30,41 +38,31 @@
             aria-controls="complexcomplex"
             id="complex"
             tabindex="-1"
-            data-deletable=""
           >
             Joke
           </button>
         </div>
-        <div tabindex="0" role="tabpanel" id="nils-tab" aria-labelledby="nils">
+        <div id="nils-tab">
+          <h2>Nils Frahm</h2>
           <p>
-            He is a German musician, composer and record producer based in
-            Berlin. He is known for combining classical and electronic music and
-            for an unconventional approach to the piano in which he mixes a
+            Nils Frahm is a German musician, composer and record producer based
+            in Berlin. He is known for combining classical and electronic music
+            and for an unconventional approach to the piano in which he mixes a
             grand piano, upright piano, Roland Juno-60, Rhodes piano, drum
             machine, and Moog Taurus.
           </p>
         </div>
-        <div
-          tabindex="0"
-          role="tabpanel"
-          id="agnes-tab"
-          aria-labelledby="agnes"
-          hidden=""
-        >
+        <div id="agnes-tab">
+          <h2>Agnes Obel</h2>
           <p>
-            She is a Danish singer/songwriter. Her first album, Philharmonics,
-            was released by PIAS Recordings on 4 October 2010 in Europe.
-            Philharmonics was certified gold in June 2011 by the Belgian
-            Entertainment Association (BEA) for sales of 10,000 Copies.
+            Agnes Caroline Thaarup Obel is a Danish singer/songwriter. Her first
+            album, Philharmonics, was released by PIAS Recordings on 4 October
+            2010 in Europe. Philharmonics was certified gold in June 2011 by the
+            Belgian Entertainment Association (BEA) for sales of 10,000 Copies.
           </p>
         </div>
-        <div
-          tabindex="0"
-          role="tabpanel"
-          id="complexcomplex"
-          aria-labelledby="complex"
-          hidden=""
-        >
+        <div id="complexcomplex">
+          <h2>Joke</h2>
           <p>Fear of complicated buildings:</p>
           <p>A complex complex complex.</p>
         </div>
@@ -72,14 +70,26 @@
     </main>
 
     <script>
+      document.body.classList.remove("no-js");
       const tabs = document.querySelectorAll('[role="tab"]');
-      const panelsNodeList = document.querySelectorAll('[role="tabpanel"]');
-      const panelsArray = Array.from(panelsNodeList);
 
       tabs.forEach((tab, i) => {
+        const ariaControls = tab.getAttribute("aria-controls");
+        const panel = document.getElementById(ariaControls);
+
+        panel.tabIndex = 0;
+        panel.setAttribute("role", "tabpanel");
+
+        const id = tab.getAttribute("id");
+        panel.setAttribute("aria-labelledby", id);
+
+        const tabSelected =
+          tab.getAttribute("aria-selected") === "true" ? true : false;
+        if (!tabSelected) {
+          panel.setAttribute("hidden", "");
+        }
         const nextTab = i === tabs.length - 1 ? tabs[0] : tabs[i + 1];
         const prevTab = i === 0 ? tabs[tabs.length - 1] : tabs[i - 1];
-        const ariaControl = tab.getAttribute("aria-controls");
 
         tab.addEventListener("keydown", (e) => {
           if (e.key === "ArrowLeft") {
@@ -94,13 +104,15 @@
         });
 
         tab.addEventListener("click", () => {
-          const ariaSelected = document.querySelector('[aria-selected="true"]');
-          const panel = document.getElementById(ariaControl);
           const panelIsHidden =
             panel.getAttribute("hidden") === null ? false : true;
-          const notHiddenId = ariaSelected.getAttribute("aria-controls");
-          const notHiddenPanel = document.getElementById(notHiddenId);
+
           if (panelIsHidden) {
+            const ariaSelected = document.querySelector(
+              '[aria-selected="true"]'
+            );
+            const notHiddenId = ariaSelected.getAttribute("aria-controls");
+            const notHiddenPanel = document.getElementById(notHiddenId);
             ariaSelected.setAttribute("aria-selected", false);
             ariaSelected.setAttribute("tabindex", -1);
             tab.setAttribute("aria-selected", true);
