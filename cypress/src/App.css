@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+:root {
+  --white: #fff;
+  /* --dark-grey: #363636; */
+  /* Change dark grey variable to failing contrast */
+  --dark-grey: #b3a9a9;
+}
+.App {
+  margin: 1rem;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background: var(--white);
+  color: var(--dark-grey);
+}
+
+body[data-color-scheme="dark"] {
+  background: var(--white);
+  color: var(--dark-grey);
+}
+
+body[data-color-scheme="light"] {
+  background: var(--white);
+  color: var(--dark-grey);
+}
+
+.sr-only {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+fieldset {
+  border: 0;
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+  color: var(--dark-grey);
+  border: none;
+  margin: 0;
+  text-align: left;
+  width: 5.5rem;
+  border: 1px solid;
+  padding: 8px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  background: transparent;
+  -webkit-appearance: none;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  right: 0.35rem;
+  top: 0.65rem;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 12px solid var(--dark-grey);
+}
+
+[data-color-scheme="dark"] .button {
+  color: var(--white);
+}
+
+[data-color-scheme="dark"] .button::after {
+  border-top-color: var(--white);
+}
+
+[data-color-scheme="light"] .button {
+  color: var(--dark-grey);
+}
+
+[data-color-scheme="light"] .button::after {
+  border-top-color: var(--dark-grey);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--dark-grey);
+    color: var(--white);
+  }
+
+  body[data-color-scheme="system-default"],
+  body[data-color-scheme="dark"] {
+    background: var(--dark-grey);
+    color: var(--white);
+  }
+
+  body[data-color-scheme="light"] {
+    background: var(--white);
+    color: var(--dark-grey);
+  }
+
+  .button {
+    color: var(--white);
+  }
+
+  .button::after {
+    border-top-color: var(--white);
+  }
+
+  [data-color-scheme="system-default"] .button,
+  [data-color-scheme="dark"] .button {
+    color: var(--white);
+  }
+
+  [data-color-scheme="system-default"] .button::after,
+  [data-color-scheme="dark"] .button::after {
+    border-top-color: var(--white);
+  }
+
+  [data-color-scheme="light"] .button {
+    color: var(--dark-grey);
+  }
+
+  [data-color-scheme="light"] .button::after {
+    border-top-color: var(--dark-grey);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: var(--white);
+    color: var(--dark-grey);
+  }
+
+  body[data-color-scheme="system-default"],
+  body[data-color-scheme="light"] {
+    background: var(--white);
+    color: var(--dark-grey);
+  }
+
+  body[data-color-scheme="dark"] {
+    background: var(--dark-grey);
+    color: var(--white);
+  }
+
+  .button {
+    color: var(--dark-grey);
+  }
+
+  .button::after {
+    border-top-color: var(--dark-grey);
+  }
+
+  [data-color-scheme="system-default"] .button,
+  [data-color-scheme="light"] .button {
+    color: var(--dark-grey);
+  }
+
+  [data-color-scheme="system-default"] .button::after,
+  [data-color-scheme="light"] .button::after {
+    border-top-color: var(--dark-grey);
+  }
+
+  [data-color-scheme="dark"] .button {
+    color: var(--white);
+  }
+
+  [data-color-scheme="dark"] .button::after {
+    border-top-color: var(--white);
+  }
+}

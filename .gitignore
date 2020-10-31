@@ -1,0 +1,42 @@
+# # Node build artifacts
+# vanilla-js/node_modules
+# vanilla-js/npm-debug.log
+
+# # Local development
+# vanilla-js/*.env
+# vanilla-js/*.dev
+# vanilla-js/.DS_Store
+
+# # Docker
+# vanilla-js/Dockerfile
+# vanilla-js/docker-compose.yml
+
+# # Test
+# vanilla-js/coverage
+
+# # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# # dependencies
+# /node_modules
+# /.pnp
+# .pnp.js
+
+# # testing
+# /coverage
+
+# # production
+# cypress/build
+
+# # misc
+# cypress/.DS_Store
+# cypress/.env.local
+# cypress/.env.development.local
+# cypress/.env.test.local
+# cypress/.env.production.local
+
+# cypress/npm-debug.log*
+# cypress/yarn-debug.log*
+# cypress/yarn-error.log*
+
+# cypress/cypress/videos
+# cypress/cypress/screenshots
