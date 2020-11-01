@@ -23,9 +23,10 @@ describe("index.html", () => {
     const firstTab = container.querySelector("#nils");
     fireEvent.keyDown(firstTab, { key: "ArrowRight" });
 
-    const secondTab = container.querySelector("#agnes");
     expect(firstTab).not.toHaveFocus();
-    expect(firstTab).toHaveAttribute("tabindex");
+    expect(firstTab).toHaveAttribute("tabindex", "-1");
+
+    const secondTab = container.querySelector("#agnes");
     expect(secondTab).toHaveFocus();
     expect(secondTab).not.toHaveAttribute("tabindex");
 
