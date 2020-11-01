@@ -2,9 +2,9 @@
 
 :root {
   --white: #fff;
-  /* --dark-grey: #363636; */
+  --dark-grey: #363636;
   /* Change dark grey variable to failing contrast */
-  --dark-grey: #b3a9a9;
+  /* --dark-grey: #b3a9a9; */
 }
 .App {
   margin: 1rem;
